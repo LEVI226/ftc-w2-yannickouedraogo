@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spend.In - All your business expenses in one place</title>
+    <link rel="icon" type="image/svg+xml" href="logo_favicon/favicon.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -33,6 +34,12 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
+        }
+
+        .navbar-logo {
+            height: 32px;
+            width: auto;
+            margin-right: 10px;
         }
 
         /* HERO SECTION - BOUTONS PLUS SUBTILS */
@@ -76,9 +83,13 @@
             padding: 8px 16px;
         }
 
-        /* HERO BACKGROUND */
+        /* HERO BACKGROUND AVEC IMAGE */
         .hero-section {
-            background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 50%, rgba(71, 85, 105, 0.95) 100%), 
+                        url('images/Hero_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             min-height: 100vh;
             position: relative;
             overflow: hidden;
@@ -151,7 +162,10 @@
 
         /* CALL TO ACTION - Start Track Your Business */
         .cta-track-section {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%), 
+                        url('images/How it Works - 1st_bg.png');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 100px 0;
             position: relative;
@@ -198,7 +212,10 @@
 
         /* HOW IT WORKS SECTION - Few Easy Steps */
         .how-it-works-section {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%), 
+                        url('images/How it Works - 1st_bg.png');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 100px 0;
             position: relative;
@@ -247,6 +264,13 @@
             color: #666;
             font-size: 0.95rem;
             line-height: 1.5;
+        }
+
+        .step-card-new img {
+            width: 150px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 20px;
         }
 
         .how-it-works-buttons {
@@ -303,9 +327,15 @@
         }
 
         .feature-list .check-icon {
-            color: #22c55e;
+            width: 24px;
+            height: 24px;
             margin-right: 15px;
             margin-top: 2px;
+        }
+
+        .toggle-image {
+            max-width: 100%;
+            height: auto;
         }
 
         /* Testimonials */
@@ -512,7 +542,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
     <div class="container">
         <a class="navbar-brand text-white d-flex align-items-center" href="#">
-            <i class="fas fa-credit-card me-2"></i>
+            <img src="logo_favicon/logo.svg" alt="Spend.In Logo" class="navbar-logo">
             Spend.In
         </a>
         
@@ -583,7 +613,7 @@
                     </div>
                     
                     <div class="mt-5">
-                        <img src="Hero-Section.jpg" 
+                        <img src="images/Dashboard.png" 
                              alt="Spend.In Dashboard Preview" 
                              class="img-fluid">
                     </div>
@@ -613,16 +643,19 @@
                 <!-- 3 Features -->
                 <div class="row mt-5">
                     <div class="col-md-4 mb-4">
+                        <img src="images/image_benuefit-1.png" alt="Automatic Invoice Payment" class="mb-3" style="width: 80px;">
                         <h5 class="fw-bold mb-3">Automatic Invoice Payment</h5>
                         <p class="text-muted">No need to pay manually, we provide automatic invoice payment service! Set a payment schedule and you're done, it's that easy!</p>
                     </div>
                     
                     <div class="col-md-4 mb-4">
+                        <img src="images/image_benefits_2.png" alt="Clear payment history" class="mb-3" style="width: 80px;">
                         <h5 class="fw-bold mb-3">Clear payment history</h5>
                         <p class="text-muted">Still writing manual expenses? Our platform breaks down every expense you log down to the millisecond!</p>
                     </div>
                     
                     <div class="col-md-4 mb-4">
+                        <img src="images/image_benefit_3.png" alt="Use of multi-card payments" class="mb-3" style="width: 80px;">
                         <h5 class="fw-bold mb-3">Use of multi-card payments</h5>
                         <p class="text-muted">Have more than 1 bank account or credit/debit card? Our platform is already integrated with many banks around the world, for easier payments!</p>
                     </div>
@@ -631,7 +664,7 @@
             
             <div class="col-lg-6">
                 <div class="benefit-mockup">
-                    <img src="Benefit-1st.jpg" alt="Spend.In Features" class="img-fluid">
+                    <img src="images/benefite2image.png" alt="Spend.In Features" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -650,30 +683,30 @@
                 <h2 class="display-6 fw-bold mb-4">Reduce Time in Doing Manual Work Managing Expenses</h2>
                 
                 <div class="comparison-toggle">
-                    <button class="toggle-btn active">With Spend.In</button>
-                    <button class="toggle-btn">Without Spend.In</button>
+                    <button class="toggle-btn active" data-target="with-spend">With Spend.In</button>
+                    <button class="toggle-btn" data-target="without-spend">Without Spend.In</button>
                 </div>
                 
                 <h4 class="fw-bold mb-4">Track Business Expenses until its Millisecond</h4>
                 
                 <ul class="feature-list list-unstyled">
                     <li>
-                        <i class="fas fa-check check-icon"></i>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
                         <span>Analyze your business cost easily with group transaction through tagging feature.</span>
                     </li>
                     <li>
-                        <i class="fas fa-check check-icon"></i>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
                         <span>Add more than one card for payment. Integrated with more than 50+ payment method and support bulk payment.</span>
                     </li>
                     <li>
-                        <i class="fas fa-check check-icon"></i>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
                         <span>Arrange your business expenses by date, name, etc., with just one click.</span>
                     </li>
                 </ul>
             </div>
             
             <div class="col-lg-6">
-                <img src="Success-Stories-With-Spend.In.jpg" alt="Balance Statistics" class="img-fluid">
+                <img id="toggle-image" src="images/image_with_spend.png" alt="Balance Statistics" class="img-fluid toggle-image">
             </div>
         </div>
     </div>
@@ -694,27 +727,21 @@
         <div class="steps-container">
             <div class="step-card-new">
                 <div class="step-number-new">1</div>
-                <div class="step-icon mb-3">
-                    <i class="fas fa-user-plus fa-2x text-muted"></i>
-                </div>
+                <img src="images/hwim1.png" alt="Register Account">
                 <h5>Register your<br>Spend.In account.</h5>
                 <p>Create your account to get started with expense management</p>
             </div>
             
             <div class="step-card-new">
                 <div class="step-number-new">2</div>
-                <div class="step-icon mb-3">
-                    <i class="fas fa-list-ul fa-2x text-muted"></i>
-                </div>
+                <img src="images/hwim2.png" alt="Fill Expenses">
                 <h5>Fill in the list of your<br>business expenses.</h5>
                 <p>Add your business expenses and categorize them properly</p>
             </div>
             
             <div class="step-card-new">
                 <div class="step-number-new">3</div>
-                <div class="step-icon mb-3">
-                    <i class="fas fa-check-circle fa-2x text-success"></i>
-                </div>
+                <img src="images/hwim3.png" alt="Continue Work">
                 <h5>Done, let's<br>continue the work.</h5>
                 <p>Start managing your finances efficiently with our platform</p>
             </div>
@@ -723,6 +750,42 @@
         <div class="how-it-works-buttons">
             <a href="#" class="btn btn-demo btn-lg me-3">Get a Free Demo</a>
             <a href="#pricing" class="btn btn-outline-light btn-lg">See Pricing</a>
+        </div>
+    </div>
+</section>
+
+<!-- How it Works Section 2 -->
+<section class="success-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <h2 class="display-6 fw-bold mb-4">Powerful Integration Ecosystem</h2>
+                
+                <ul class="feature-list list-unstyled">
+                    <li>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
+                        <span>Connect with 50+ payment processors and banking partners</span>
+                    </li>
+                    <li>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
+                        <span>Seamless integration with popular accounting software</span>
+                    </li>
+                    <li>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
+                        <span>API access for custom integrations and automation</span>
+                    </li>
+                    <li>
+                        <img src="images/tick-circle.svg" alt="Check" class="check-icon">
+                        <span>Real-time sync across all your business tools</span>
+                    </li>
+                </ul>
+                
+                <a href="#" class="btn btn-primary btn-lg mt-4">Explore Integrations</a>
+            </div>
+            
+            <div class="col-lg-6 order-lg-1">
+                <img src="images/hw_work_2.png" alt="Integration Ecosystem" class="img-fluid">
+            </div>
         </div>
     </div>
 </section>
@@ -750,7 +813,7 @@
             </div>
             
             <div class="col-lg-6">
-                <img src="Call-to-Action.jpg" alt="Spending Statistics Dashboard" class="img-fluid">
+                <img src="images/howim2.png" alt="Spending Statistics Dashboard" class="img-fluid">
             </div>
         </div>
     </div>
@@ -990,7 +1053,7 @@
         <div class="row">
             <div class="col-lg-4 mb-4">
                 <div class="d-flex align-items-center mb-3">
-                    <i class="fas fa-credit-card me-2 brand-text"></i>
+                    <img src="logo_favicon/logo.svg" alt="Spend.In Logo" class="me-2" style="width: 32px; height: 32px;">
                     <h5 class="brand-text mb-0">Spend.In</h5>
                 </div>
                 <p class="description-text">
@@ -1105,11 +1168,26 @@
         });
     });
 
-    // Toggle functionality for comparison
+    // Toggle functionality for comparison (With/Without Spend.In)
     document.querySelectorAll('.toggle-btn').forEach(btn => {
         btn.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const toggleImage = document.getElementById('toggle-image');
+            
+            // Remove active class from all buttons
             document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
             this.classList.add('active');
+            
+            // Change image based on selection
+            if (target === 'with-spend') {
+                toggleImage.src = 'images/image_with_spend.png';
+                toggleImage.alt = 'With Spend.In';
+            } else if (target === 'without-spend') {
+                toggleImage.src = 'images/without_spend_in_image.png';
+                toggleImage.alt = 'Without Spend.In';
+            }
         });
     });
 </script>
