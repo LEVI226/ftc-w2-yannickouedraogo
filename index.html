@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spend.In - All your business expenses in one place</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* VARIABLES COULEURS CORRIGÉES */
+        :root {
+            --primary-color: #8B5CF6;              
+            --primary-gradient: linear-gradient(135deg, #8B5CF6, #A855F7);
+            --dark-bg: #1E293B;                   
+            --secondary-bg: #334155;               
+            --text-muted: rgba(255,255,255,0.6);   
+            --white-bg: #FFFFFF;                   
+            --light-gray: #F8FAFC;                 
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar-custom {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* HERO SECTION - BOUTONS PLUS SUBTILS */
+        .btn-demo {
+            background: var(--primary-gradient);
+            border: none;                          
+            border-radius: 8px;                    
+            padding: 12px 24px;
+            font-weight: 500;                      
+            transition: all 0.2s ease;             
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-1px);           
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+        }
+
+        /* BOUTON "SEE PRICING" - BORDURE SUBTILE */
+        .btn-outline-light {
+            background: transparent !important;
+            border: 1px solid rgba(255,255,255,0.2) !important; 
+            color: rgba(255,255,255,0.9) !important;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255,255,255,0.1) !important;     
+            border-color: rgba(255,255,255,0.3) !important;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        /* NAVIGATION - LOGIN BUTTON SUBTIL */
+        .navbar-custom .btn-outline-light {
+            border: 1px solid rgba(255,255,255,0.15) !important;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+
+        /* HERO BACKGROUND */
+        .hero-section {
+            background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 120px;
+        }
+
+        .display-custom {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px !important;         
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* BENEFIT SECTION 1 - Easy, Simple, Affordable */
+        .benefit-section-1 {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .benefit-feature {
+            padding: 40px 0;
+        }
+
+        .benefit-feature h4 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .benefit-description {
+            color: #6B7280;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .benefit-mockup {
+            position: relative;
+        }
+
+        .benefit-mockup img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* CALL TO ACTION - Start Track Your Business */
+        .cta-track-section {
+            background: var(--dark-bg);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-track-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-track-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-badge {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .cta-track-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .cta-track-subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* HOW IT WORKS SECTION - Few Easy Steps */
+        .how-it-works-section {
+            background: var(--dark-bg);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card-new {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 300px;
+            position: relative;
+            text-align: center;
+            color: #333;
+        }
+
+        .step-number-new {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-card-new h5 {
+            font-weight: 700;
+            margin: 30px 0 10px;
+            color: #333;
+        }
+
+        .step-card-new p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .how-it-works-buttons {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .how-it-works-buttons .btn {
+            margin: 0 10px;
+        }
+
+        /* SUCCESS SECTION */
+        .success-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .productivity-badge {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .comparison-toggle {
+            background: #f1f3f4;
+            border-radius: 30px;
+            padding: 5px;
+            display: inline-flex;
+            margin-bottom: 50px;
+        }
+
+        .toggle-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .feature-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 1rem;
+        }
+
+        .feature-list .check-icon {
+            color: #22c55e;
+            margin-right: 15px;
+            margin-top: 2px;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--dark-bg);
+            color: white;
+            padding: 100px 0;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 40px;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            background: #333;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 15px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .feature-item {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item.disabled {
+            color: #ccc;
+        }
+
+        .feature-check {
+            color: #22c55e;
+            margin-right: 10px;
+        }
+
+        .feature-cross {
+            color: #ccc;
+            margin-right: 10px;
+        }
+
+        /* FOOTER BLANC */
+        .footer {
+            background: var(--white-bg) !important;  
+            color: #374151 !important;               
+            padding: 60px 0 30px;
+            border-top: 1px solid #E5E7EB;          
+        }
+
+        .footer h5, .footer h6 {
+            color: #111827 !important;              
+            font-weight: 600;
+        }
+
+        .footer-links a {
+            color: #6B7280 !important;              
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #374151 !important;              
+        }
+
+        .footer .brand-text {
+            color: #111827 !important;              
+        }
+
+        .footer .description-text {
+            color: #6B7280 !important;              
+        }
+
+        .footer .social-icon {
+            color: #6B7280 !important;
+        }
+
+        .footer .social-icon:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .footer hr {
+            border-color: #E5E7EB !important;
+        }
+
+        .footer .copyright-text {
+            color: #6B7280 !important;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .btn-demo, .btn-outline-light {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .hero-section {
+                padding-top: 80px;
+            }
+            
+            .display-custom {
+                font-size: 2.2rem;
+                line-height: 1.1;
+            }
+
+            .cta-track-title {
+                font-size: 2.2rem;
+            }
+
+            .steps-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 60px;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-custom {
+                font-size: 1.9rem;
+            }
+
+            .cta-track-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-section .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-section .me-3 {
+                margin-right: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom">
+    <div class="container">
+        <a class="navbar-brand text-white d-flex align-items-center" href="#">
+            <i class="fas fa-credit-card me-2"></i>
+            Spend.In
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Products
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="#">Analytics</a></li>
+                        <li><a class="dropdown-item" href="#">Invoices</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#benefits">Benefit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#how-it-works">How it Works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#pricing">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Company
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">About</a></li>
+                        <li><a class="dropdown-item" href="#">Contact</a></li>
+                        <li><a class="dropdown-item" href="#">Blog</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="d-flex">
+                <a href="#" class="btn btn-outline-light me-2">Login</a>
+                <a href="#" class="btn btn-demo text-white">Get Demo</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="hero-content text-center text-white">
+                    <h1 class="display-custom mb-4">
+                        All your business<br>
+                        expenses in one place.
+                    </h1>
+                    
+                    <p class="lead mb-4 fs-5" style="color: rgba(255,255,255,0.8);">
+                        Your one-stop finance empower platform.<br>
+                        Manage all your business expenses with our supafast app.
+                    </p>
+                    
+                    <div class="mb-5">
+                        <a href="#demo" class="btn btn-demo btn-lg me-3">Get a Free Demo</a>
+                        <a href="#pricing" class="btn btn-outline-light btn-lg">See Pricing</a>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <img src="Hero-Section.jpg" 
+                             alt="Spend.In Dashboard Preview" 
+                             class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section 1 - Easy, Simple, Affordable -->
+<section id="benefits" class="benefit-section-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="benefit-feature">
+                    <div class="mb-3">
+                        <span class="badge bg-primary fs-6 px-3 py-2">WHY USE SPEND.IN</span>
+                    </div>
+                    
+                    <h2 class="display-6 fw-bold mb-4">Easy, Simple,<br>Affordable</h2>
+                    
+                    <p class="benefit-description">
+                        Our platform helps your business in managing expenses. These are some of the reasons why you should use our platform in managing business finances.
+                    </p>
+                </div>
+
+                <!-- 3 Features -->
+                <div class="row mt-5">
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold mb-3">Automatic Invoice Payment</h5>
+                        <p class="text-muted">No need to pay manually, we provide automatic invoice payment service! Set a payment schedule and you're done, it's that easy!</p>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold mb-3">Clear payment history</h5>
+                        <p class="text-muted">Still writing manual expenses? Our platform breaks down every expense you log down to the millisecond!</p>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold mb-3">Use of multi-card payments</h5>
+                        <p class="text-muted">Have more than 1 bank account or credit/debit card? Our platform is already integrated with many banks around the world, for easier payments!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="benefit-mockup">
+                    <img src="Benefit-1st.jpg" alt="Spend.In Features" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section 2 - Success Story -->
+<section class="success-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <span class="productivity-badge">INCREASE PRODUCTIVITY</span>
+                </div>
+                
+                <h2 class="display-6 fw-bold mb-4">Reduce Time in Doing Manual Work Managing Expenses</h2>
+                
+                <div class="comparison-toggle">
+                    <button class="toggle-btn active">With Spend.In</button>
+                    <button class="toggle-btn">Without Spend.In</button>
+                </div>
+                
+                <h4 class="fw-bold mb-4">Track Business Expenses until its Millisecond</h4>
+                
+                <ul class="feature-list list-unstyled">
+                    <li>
+                        <i class="fas fa-check check-icon"></i>
+                        <span>Analyze your business cost easily with group transaction through tagging feature.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check check-icon"></i>
+                        <span>Add more than one card for payment. Integrated with more than 50+ payment method and support bulk payment.</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check check-icon"></i>
+                        <span>Arrange your business expenses by date, name, etc., with just one click.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-6">
+                <img src="Success-Stories-With-Spend.In.jpg" alt="Balance Statistics" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it Works Section -->
+<section id="how-it-works" class="how-it-works-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary fs-6 px-3 py-2 mb-3">HOW IT WORKS</span>
+            <h2 class="display-5 fw-bold mb-4 text-white">Few Easy Steps and Done</h2>
+            <p class="lead text-white-50">
+                In just few easy step, you are all set to manage your business finances.<br>
+                Manage all expenses with Spend.In all in one place.
+            </p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-card-new">
+                <div class="step-number-new">1</div>
+                <div class="step-icon mb-3">
+                    <i class="fas fa-user-plus fa-2x text-muted"></i>
+                </div>
+                <h5>Register your<br>Spend.In account.</h5>
+                <p>Create your account to get started with expense management</p>
+            </div>
+            
+            <div class="step-card-new">
+                <div class="step-number-new">2</div>
+                <div class="step-icon mb-3">
+                    <i class="fas fa-list-ul fa-2x text-muted"></i>
+                </div>
+                <h5>Fill in the list of your<br>business expenses.</h5>
+                <p>Add your business expenses and categorize them properly</p>
+            </div>
+            
+            <div class="step-card-new">
+                <div class="step-number-new">3</div>
+                <div class="step-icon mb-3">
+                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                </div>
+                <h5>Done, let's<br>continue the work.</h5>
+                <p>Start managing your finances efficiently with our platform</p>
+            </div>
+        </div>
+
+        <div class="how-it-works-buttons">
+            <a href="#" class="btn btn-demo btn-lg me-3">Get a Free Demo</a>
+            <a href="#pricing" class="btn btn-outline-light btn-lg">See Pricing</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action - Start Track Your Business -->
+<section class="cta-track-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="cta-track-content">
+                    <div class="download-badge">DOWNLOAD NOW!</div>
+                    
+                    <h2 class="cta-track-title">
+                        Start Track Your Business<br>
+                        Expenses Today
+                    </h2>
+                    
+                    <p class="cta-track-subtitle">
+                        Are you ready to make your business more organized?<br>
+                        Download Spend.In now!
+                    </p>
+                    
+                    <a href="#" class="btn btn-demo btn-lg">Get a Free Demo</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <img src="Call-to-Action.jpg" alt="Spending Statistics Dashboard" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary fs-6 px-3 py-2 mb-3">WHAT THEY SAY</span>
+            <h2 class="display-5 fw-bold mb-4 text-white">Our User Kind Words</h2>
+            <p class="lead" style="color: rgba(255,255,255,0.7);">
+                Here are some testimonials from our user after using Spend.In<br>
+                to manage their business expenses.
+            </p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <h5 class="fw-bold mb-3">It's just incredible!</h5>
+                    <p class="mb-4">It's just 1 month since I'm using Spend.in to manage my business expenses, but the result is very satisfying! My business finance now more neat than before, thanks to Spend.In!</p>
+                    
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Jimmy Bartney" class="author-avatar">
+                        <div>
+                            <div class="fw-bold">Jimmy Bartney</div>
+                            <small style="color: rgba(255,255,255,0.6);">Product Manager at Picko Lab</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <h5 class="fw-bold mb-3">Satisfied User Here!</h5>
+                    <p class="mb-4">Never thought that with Spend.in managing my business expenses is so easy! Been using this platform for 3 months and still counting!</p>
+                    
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Natasha Romanoff" class="author-avatar">
+                        <div>
+                            <div class="fw-bold">Natasha Romanoff</div>
+                            <small style="color: rgba(255,255,255,0.6);">Black Widow</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <h5 class="fw-bold mb-3">No doubt, Spend.In is the best!</h5>
+                    <p class="mb-4">"The best"! That's what I want to say to this platform, didn't know that there's a platform to help you manage your business expenses like this! Very recommended to you who have a big business!</p>
+                    
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Moritika Kazuki" class="author-avatar">
+                        <div>
+                            <div class="fw-bold">Moritika Kazuki</div>
+                            <small style="color: rgba(255,255,255,0.6);">Finance Manager at Mangan</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <button class="btn btn-outline-light me-3"><i class="fas fa-chevron-left"></i></button>
+            <button class="btn btn-primary"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="pricing-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-4">Ready to Get Started?</h2>
+            <p class="lead text-muted mb-4">Choose a plan that suits your business needs</p>
+            
+            <div class="d-flex justify-content-center align-items-center mb-4">
+                <span class="me-3">Monthly</span>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="pricingSwitch">
+                    <label class="form-check-label" for="pricingSwitch"></label>
+                </div>
+                <span class="ms-3">Yearly</span>
+                <span class="badge bg-primary ms-2">Save 65%</span>
+            </div>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4">
+                <div class="pricing-card text-center">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-star text-primary me-2"></i>
+                        <h4 class="fw-bold mb-0">Free</h4>
+                    </div>
+                    <p class="text-muted mb-4">Perfect plan to get started</p>
+                    
+                    <div class="mb-4">
+                        <span class="price">$0</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <p class="text-muted mb-4">A free plan grants you access to some cool features of Spend.In.</p>
+                    
+                    <div class="text-start mb-4">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Sync across device</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>5 workspace</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Collaborate with 5 user</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times feature-cross"></i>
+                            <span>Sharing permission</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times feature-cross"></i>
+                            <span>Admin tools</span>
+                        </div>
+                        <div class="feature-item disabled">
+                            <i class="fas fa-times feature-cross"></i>
+                            <span>100+ integrations</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-outline-primary btn-lg w-100">Get Your Free Plan</button>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="pricing-card text-center popular">
+                    <div class="popular-badge">Popular</div>
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-rocket text-primary me-2"></i>
+                        <h4 class="fw-bold mb-0">Pro</h4>
+                    </div>
+                    <p class="text-muted mb-4">Perfect plan for professionals!</p>
+                    
+                    <div class="mb-4">
+                        <span class="price">$12</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <p class="text-muted mb-4">For professional only! Start arranging your expenses with our best templates.</p>
+                    
+                    <div class="text-start mb-4">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Everything in Free Plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Unlimited workspace</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Collaborative workspace</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Sharing permission</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Admin tools</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>100+ integrations</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg w-100">Get Started</button>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="pricing-card text-center">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-bolt text-primary me-2"></i>
+                        <h4 class="fw-bold mb-0">Ultimate</h4>
+                    </div>
+                    <p class="text-muted mb-4">Best suits for great company!</p>
+                    
+                    <div class="mb-4">
+                        <span class="price">$33</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    
+                    <p class="text-muted mb-4">If you a finance manager at big company, this plan is a perfect match.</p>
+                    
+                    <div class="text-start mb-4">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Everything in Pro Plan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Daily performance reports</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Dedicated assistant</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Artificial Intelligence</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Marketing tools & automations</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-check"></i>
+                            <span>Advanced security</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg w-100">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fas fa-credit-card me-2 brand-text"></i>
+                    <h5 class="brand-text mb-0">Spend.In</h5>
+                </div>
+                <p class="description-text">
+                    Your one-stop finance empower platform. Manage all your business expenses with our supafast app.
+                </p>
+                <div class="d-flex">
+                    <a href="#" class="social-icon me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon me-3"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="mb-3">Product</h6>
+                <div class="footer-links">
+                    <div class="mb-2"><a href="#">Dashboard</a></div>
+                    <div class="mb-2"><a href="#">Analytics</a></div>
+                    <div class="mb-2"><a href="#">Invoices</a></div>
+                    <div class="mb-2"><a href="#">Integrations</a></div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="mb-3">Company</h6>
+                <div class="footer-links">
+                    <div class="mb-2"><a href="#">About</a></div>
+                    <div class="mb-2"><a href="#">Careers</a></div>
+                    <div class="mb-2"><a href="#">Contact</a></div>
+                    <div class="mb-2"><a href="#">Blog</a></div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="mb-3">Resources</h6>
+                <div class="footer-links">
+                    <div class="mb-2"><a href="#">Help Center</a></div>
+                    <div class="mb-2"><a href="#">Documentation</a></div>
+                    <div class="mb-2"><a href="#">API</a></div>
+                    <div class="mb-2"><a href="#">Status</a></div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="mb-3">Legal</h6>
+                <div class="footer-links">
+                    <div class="mb-2"><a href="#">Privacy</a></div>
+                    <div class="mb-2"><a href="#">Terms</a></div>
+                    <div class="mb-2"><a href="#">Security</a></div>
+                    <div class="mb-2"><a href="#">Cookies</a></div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="copyright-text mb-0">
+                    © 2025 Spend.In. All rights reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p class="copyright-text mb-0">
+                    Made with ❤️ for businesses worldwide
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar-custom');
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+        } else {
+            navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+        }
+    });
+
+    // Pricing toggle functionality
+    const pricingSwitch = document.getElementById('pricingSwitch');
+    const priceElements = document.querySelectorAll('.price');
+    
+    const monthlyPrices = ['$0', '$12', '$33'];
+    const yearlyPrices = ['$0', '$5', '$12'];
+    
+    pricingSwitch.addEventListener('change', function() {
+        priceElements.forEach((price, index) => {
+            if (this.checked) {
+                price.textContent = yearlyPrices[index];
+            } else {
+                price.textContent = monthlyPrices[index];
+            }
+        });
+    });
+
+    // Toggle functionality for comparison
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
